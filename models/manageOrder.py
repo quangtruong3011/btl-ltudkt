@@ -57,24 +57,26 @@ class ManageOrder:
             [
                 order.total_amount
                 for order in self.orders
-                if order.status == Order.STASTUS_DELIVERED
+                if order.status == Order.STATUS_DELIVERED
             ]
         )
 
     def sort_orders_by_total_amount(self, ascending=True):
         return sorted(
-            self.orders, key=lambda order: order.total_amount, reverse=not ascending
+            self.orders,
+            key=lambda order: (order.total_amount, order.order_id),
+            reverse=not ascending,
         )
 
     def get_pending_orders(self):
         return self.display_orders_by_status(
-            Order.STASTUS_PENDING
-        ) + self.display_orders_by_status(Order.STASTUS_DELIVERING)
+            Order.STATUS_PENDING
+        ) + self.display_orders_by_status(Order.STATUS_DELIVERING)
 
     def get_top_selling_products(self, top_n=5):
         products_sales = {}
         for order in self.orders:
-            if order.status == Order.STASTUS_DELIVERED:
+            if order.status == Order.STATUS_DELIVERED:
                 for product in order.products:
                     if product.name in products_sales:
                         products_sales[product.name] += product.quantity

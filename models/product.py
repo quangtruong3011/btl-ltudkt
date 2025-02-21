@@ -5,7 +5,7 @@ class Product:
         self.price = price
 
     def get_total_price(self):
-        return self.quantity * self.unit_price
+        return self.quantity * self.price
 
     def __str__(self):
         return (

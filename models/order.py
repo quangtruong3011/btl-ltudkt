@@ -6,9 +6,9 @@ from models.product import Product
 
 
 class Order:
-    STASTUS_PENDING = "Pending"  # Chờ xử lý
-    STASTUS_DELIVERING = "Delivering"  # Đang giao
-    STASTUS_DELIVERED = "Delivered"  # Đã giao
+    STATUS_PENDING = "Pending"  # Chờ xử lý
+    STATUS_DELIVERING = "Delivering"  # Đang giao
+    STATUS_DELIVERED = "Delivered"  # Đã giao
 
     def __init__(
         self,
@@ -17,7 +17,7 @@ class Order:
         phone: str,
         address: str,
         products: list,
-        status: str = STASTUS_PENDING,  # Default value for status
+        status: str = STATUS_PENDING,  # Default value for status
     ):
         self.order_id = order_id
         self.customer_name = customer_name
@@ -32,9 +32,9 @@ class Order:
 
     def update_status(self, new_status: str):
         if new_status not in [
-            Order.STASTUS_PENDING,
-            Order.STASTUS_DELIVERING,
-            Order.STASTUS_DELIVERED,
+            Order.STATUS_PENDING,
+            Order.STATUS_DELIVERING,
+            Order.STATUS_DELIVERED,
         ]:
             raise ValueError("Invalid status")  # Trạng thái không hợp lệ
         self.status = new_status
