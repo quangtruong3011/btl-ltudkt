@@ -37,7 +37,7 @@ class Order:
             Order.STATUS_DELIVERING,
             Order.STATUS_DELIVERED,
         ]:
-            raise ValueError("Invalid status")  # Trạng thái không hợp lệ
+            print ("Trạng thái không hợp lệ.")
         self.status = new_status
     #Trả về chuỗi biểu diễn của đơn hàng.
     def __str__(self):

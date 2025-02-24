@@ -7,7 +7,7 @@ class ManageOrder:
         self.orders = []
     #Thêm một đơn hàng mới vào danh sách.
     def add_order(self, order):
-        self.orders.append(order)
+        self.orders.append(order) #validate trên main.py
     #Chỉnh sửa thông tin đơn hàng dựa trên mã đơn hàng.
     def edit_order(
         self,
@@ -22,29 +22,35 @@ class ManageOrder:
         if order:
             if new_customer_name:
                 order.customer_name = new_customer_name
-            if new_phone:
+            if new_phone and (new_phone.isdigit()):
                 order.phone = new_phone
+            else:
+                print ("Số điện thoại không hợp lệ.")
             if new_address:
                 order.address = new_address
             if new_products:
-                for product_data in new_products:  # Dữ liệu truyền vào dạng danh sách tuple
+                for product_data in new_products:
                     product_name, new_name, new_quantity, new_price = product_data
                     for product in order.products:
                         if product.name == product_name:
                             product.edit_product(new_name or None, new_quantity or None, new_price or None)
                             break
+                        else:
+                            print ("Sản phẩm không tồn tại.")
                 order.total_amount = order.calculate_total_amount()
-            if new_status:
+            if new_status and new_status in [Order.STATUS_PENDING, Order.STATUS_DELIVERING, Order.STATUS_DELIVERED]:
                 order.update_status(new_status)
+            else:
+                print ("Trạng thái không hợp lệ.")
         else:
-            raise ValueError("Order not found")  # Đơn hàng không tồn tại
+            print ("Đơn hàng không tồn tại.")
     #Xoá đơn hàng khỏi danh sách.
     def delete_order(self, order_id):
         order = self.find_order_by_id(order_id)
         if order:
             self.orders.remove(order)
         else:
-            raise ValueError("Order not found")  # Đơn hàng không tồn tại
+            print ("Đơn hàng không tồn tại.")
     #Tìm đơn hàng theo mã đơn hàng.
     def find_order_by_id(self, order_id):
         for order in self.orders:

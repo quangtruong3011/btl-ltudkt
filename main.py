@@ -61,12 +61,12 @@ def main():
             order_id = input("Nhập mã đơn hàng cần sửa: ")
             while (not order_id) or (manager.find_order_by_id(order_id) == None):
                 order_id = input("Mã đơn hàng không hợp lệ hoặc không tồn tại. Nhập lại: ")
-            new_customer_name = input("Nhập tên khách hàng mới (hoặc bỏ qua): ")
-            new_phone = input("Nhập số điện thoại mới (hoặc bỏ qua): ")
+            new_customer_name = input("Nhập tên khách hàng mới (Ấn enter để bỏ qua): ")
+            new_phone = input("Nhập số điện thoại mới (Ấn enter để bỏ qua): ")
             while new_phone and (not new_phone.isdigit()):
                 new_phone = input("Số điện thoại không hợp lệ. Nhập lại: ")
-            new_address = input("Nhập địa chỉ giao hàng mới (hoặc bỏ qua): ")
-            new_status = input("Nhập trạng thái mới (hoặc bỏ qua): ")
+            new_address = input("Nhập địa chỉ giao hàng mới (Ấn enter để bỏ qua): ")
+            new_status = input("Nhập trạng thái mới (Ấn enter để bỏ qua): ")
             while new_status not in [Order.STATUS_PENDING, Order.STATUS_DELIVERING, Order.STATUS_DELIVERED, ""]:
                 new_status = input("Trạng thái không hợp lệ. Nhập lại: ")
 
@@ -77,9 +77,9 @@ def main():
                     product_name = input("Nhập tên sản phẩm cần sửa (hoặc 'done' để kết thúc): ")
                     if product_name.lower() == "done":
                         break
-                    new_name = input("Nhập tên sản phẩm mới (hoặc bỏ qua): ")
-                    new_quantity = (input("Nhập số lượng mới (hoặc bỏ qua): "))
-                    new_price = (input("Nhập đơn giá mới (hoặc bỏ qua): "))
+                    new_name = input("Nhập tên sản phẩm mới (Ấn enter để bỏ qua): ")
+                    new_quantity = (input("Nhập số lượng mới (Ấn enter để bỏ qua): "))
+                    new_price = (input("Nhập đơn giá mới (Ấn enter để bỏ qua): "))
                     edit_products.append((product_name, new_name, new_quantity, new_price))
 
             manager.edit_order(
