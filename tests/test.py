@@ -33,7 +33,9 @@ class TestOrder(unittest.TestCase):
             Product("Laptop Lenovo LOQ 15ARP9", 1, 16790000),
             Product("Chuột không dây Lenovo ThinkPad", 1, 290000),
         ]
-        self.order = Order(1, "Vương Hữu Lộc", "0123456789", "Hà Nội", self.products)
+        self.order = Order(
+            1, "Vương Hữu Lộc", "0123456789", "Hà Nội", self.products
+        )
 
     def test_order_initialization(self):
         self.assertEqual(self.order.order_id, 1)
@@ -72,7 +74,9 @@ class TestManageOrder(unittest.TestCase):
             Product("Laptop Lenovo LOQ 15ARP9", 1, 16790000),
             Product("Chuột không dây Lenovo ThinkPad", 1, 290000),
         ]
-        self.order = Order(1, "Vương Hữu Lộc", "0123456789", "Hà Nội", self.products)
+        self.order = Order(
+            1, "Vương Hữu Lộc", "0123456789", "Hà Nội", self.products
+        )
         self.manager.add_order(self.order)
 
     def test_add_order(self):
@@ -109,7 +113,9 @@ class TestManageOrder(unittest.TestCase):
         self.assertEqual(self.manager.caculate_total_revenue(), 17080000)
 
     def test_sort_orders_by_total_amount(self):
-        new_order = Order(2, "Vương Hữu Lộc", "0123456789", "Hà Nội", self.products)
+        new_order = Order(
+            2, "Vương Hữu Lộc", "0123456789", "Hà Nội", self.products
+        )
         self.manager.add_order(new_order)
         sorted_orders = self.manager.sort_orders_by_total_amount(ascending=True)
         self.assertEqual(sorted_orders[0].order_id, 1)
