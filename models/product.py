@@ -11,14 +11,18 @@ class Product:
     def edit_product(self, new_name = None, new_quantity = None, new_price = None):
         if new_name:
             self.name = new_name
-        if new_quantity and (int(new_quantity) > 0):
-            self.quantity = int(new_quantity)
-        else:
-            print("Số lượng không hợp lệ.")
-        if new_price and (new_price==float(new_price) > 0):
-            self.price = new_price
-        else:
-            print("Đơn giá không hợp lệ.")  
+        if new_quantity:
+            if int(new_quantity) > 0:
+                self.quantity = int(new_quantity)
+            else:
+                print("Số lượng phải lớn hơn 0.")
+        if new_price:
+            try:
+                new_price=float(new_price)
+                if new_price > 0:
+                    self.price = new_price
+            except:
+                print("Đơn giá không hợp lệ.")
     #Trả về chuỗi biểu diễn của sản phẩm.
     def __str__(self):
         return (

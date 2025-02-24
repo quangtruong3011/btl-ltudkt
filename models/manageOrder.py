@@ -33,8 +33,6 @@ class ManageOrder:
                 order.customer_name = new_customer_name
             if new_phone and (new_phone.isdigit()):
                 order.phone = new_phone
-            else:
-                print ("Số điện thoại không hợp lệ.")
             if new_address:
                 order.address = new_address
             if new_products:
@@ -49,8 +47,6 @@ class ManageOrder:
                 order.total_amount = order.calculate_total_amount()
             if new_status and new_status in [Order.STATUS_PENDING, Order.STATUS_DELIVERING, Order.STATUS_DELIVERED]:
                 order.update_status(new_status)
-            else:
-                print ("Trạng thái không hợp lệ.")
         else:
             print ("Đơn hàng không tồn tại.")
     #Xoá đơn hàng khỏi danh sách.

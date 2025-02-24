@@ -36,7 +36,7 @@ def main():
             products = []
             while True:
                 name = input("Nhập tên sản phẩm (hoặc 'done' để kết thúc): ")
-                if name == "done":
+                if (name == "done") or (name == ""):
                     break
                 quantity = input("Nhập số lượng: ")
                 while (not quantity.isdigit()) or (int(quantity) <= 0):
@@ -53,9 +53,12 @@ def main():
                     except:
                         print('Đơn giá không hợp lệ.')
                 products.append(Product(name, quantity, price))
-            order = Order(order_id, customer_name, phone, address, products)
-            manager.add_order(order)
-            print("Đơn hàng đã được thêm thành công!")
+            if len(products) == 0:
+                print("Đơn hàng phải có ít nhất một sản phẩm.")
+            else:
+                order = Order(order_id, customer_name, phone, address, products)
+                manager.add_order(order)
+                print("Đơn hàng đã được thêm thành công!")
 
         elif choice == "2":
             order_id = input("Nhập mã đơn hàng cần sửa: ")
